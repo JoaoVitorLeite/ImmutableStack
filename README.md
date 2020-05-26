@@ -11,7 +11,32 @@ Class to represent a Stack in Scala. Stack is a data structure type that respect
 
 ### About
 
-This class was implemented using a generic type, which was implemented [here](https://github.com/JoaoVitorLeite/ImmutableStack/blob/master/src/main/scala/stack/Num.scala), which supports some basic algebraic operations and is defined for types Int, Float, Double, Long. The tests made are of simple character, and for this the [Scala Test](https://www.scalatest.org/) was used. In total ?? tests were performed.
+This class was implemented using a generic type, which was implemented [here](https://github.com/JoaoVitorLeite/ImmutableStack/blob/master/src/main/scala/stack/Num.scala), which supports some basic algebraic operations and is defined for types Int, Float, Double, Long. The tests made are of simple character, and for this the [Scala Test](https://www.scalatest.org/) was used. In total 5 tests were performed.
+
+### Project Structure
+
+```bash
+src
+|
++---.gitignore
+|   0_pIpMT7n7lVCZcVFt.jpg
+|   build.sbt
+|   LICENSE
+|   README.md   
+|                               
++---src
+|   +---main
+|   |   \---scala
+|   |       \---stack
+|   |               Num.scala
+|   |               Stack.scala
+|   |               
+|   \---test
+|       \---scala
+|           \---stack
+|
+|
+```
 
 ### Test
 

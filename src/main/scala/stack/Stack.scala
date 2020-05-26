@@ -12,25 +12,26 @@ package stack
  */
 class Stack[A](val elems: List[A])(implicit op: Num[A]){
 
+  val list:List[A] = elems.reverse
   /***
    * <p>
    *   Note: Requere to check if the argument is a empty list
    */
-  require(elems.isEmpty, "Empty List")
+  require(elems.nonEmpty, "Empty List")
 
   /***
    * Method for adding an element to the stack
    * @param elem A element
    * @return New stack with the added element
    */
-  def push(elem: A): Stack[A] = new Stack(elem::elems)
+  def push(elem: A): Stack[A] = new Stack(elem::list)
 
   /***
    * Method to remove element from a stack
    * @return New stack without the removed element
    */
-  def pop : Stack[A] = elems match {
-    case l if l.nonEmpty => new Stack(elems.tail)
+  def pop : Stack[A] = list match {
+    case l if l.nonEmpty => new Stack(list.tail)
     case _ => new Stack(Nil)
   }
 
@@ -41,21 +42,13 @@ class Stack[A](val elems: List[A])(implicit op: Num[A]){
    * </p>
    * @return A element of the stack
    */
-  def peek: A = elems.head
+  def peek: A = list.head
 
   /***
    * Method to check if the stack is empty
    * @return If the stack is empty it will return true, otherwise false
    */
-  def isEmpty: Boolean = elems.isEmpty
-
-  /***
-   * Method to update a element of the stack
-   * @param index Index of the element in stack
-   * @param elem New element at `index`
-   * @return New stack with the update
-   */
-  def update(index: Int, elem: A): Stack[A]= new Stack(elems.updated(index, elem))
+  def isEmpty: Boolean = list.isEmpty
 
   /***
    * Method to join two stack's
@@ -63,10 +56,22 @@ class Stack[A](val elems: List[A])(implicit op: Num[A]){
    * @return New stack after the union
    */
   def ++(other: Stack[A]): Stack[A] = {
-    val list = other match {
-      case el => elems.::(el)
-      case _ => elems.::(Nil)
-    }
-    new Stack[A](list)
+    new Stack[A](other.list ++ list)
+  }
+
+  /***
+   * Method to print the stack
+   * @return Formatted string to represent the stack
+   */
+  override def toString: String = list mkString ", "
+
+  /***
+   * Method to compare two stack
+   * @param obj Other stack
+   * @return Return true if the two stack are equal, otherwise false
+   */
+  override def equals(obj: Any): Boolean = obj match {
+    case l: Stack[A] => if(list == l.list) true else false
+    case _ => false
   }
 }
